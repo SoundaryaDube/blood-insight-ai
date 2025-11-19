@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Upload } from "lucide-react";
+import { Upload, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -71,10 +71,10 @@ export const FileUpload = ({ onFileSelect, isAnalyzing }: FileUploadProps) => {
 
   return (
     <div
-      className={`relative border-2 border-dashed rounded-lg p-12 transition-colors ${
+      className={`relative border-2 border-dashed rounded-xl p-12 md:p-16 transition-all duration-300 ${
         dragActive
-          ? "border-primary bg-primary/5"
-          : "border-border bg-card hover:border-primary/50"
+          ? "border-primary bg-primary/5 scale-[1.02]"
+          : "border-border bg-gradient-to-br from-card to-muted/20 hover:border-primary/50 hover:shadow-soft"
       }`}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
@@ -93,19 +93,34 @@ export const FileUpload = ({ onFileSelect, isAnalyzing }: FileUploadProps) => {
         htmlFor="file-upload"
         className="flex flex-col items-center justify-center cursor-pointer"
       >
-        <Upload className="w-16 h-16 mb-4 text-primary" />
-        <p className="text-lg font-medium text-foreground mb-2">
+        <div className="relative mb-6">
+          <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+          <Upload className="w-16 h-16 text-primary relative z-10" />
+        </div>
+        <p className="text-xl font-semibold text-foreground mb-3">
           Drop your blood report here or click to browse
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground mb-4">
           Supports PDF, CSV, PNG, and JPG (max 10MB)
         </p>
+        <div className="flex gap-2 flex-wrap justify-center">
+          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">PDF</span>
+          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">CSV</span>
+          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">PNG</span>
+          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">JPG</span>
+        </div>
       </label>
       {isAnalyzing && (
-        <div className="absolute inset-0 bg-background/80 rounded-lg flex items-center justify-center">
+        <div className="absolute inset-0 bg-background/95 backdrop-blur-sm rounded-xl flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-sm text-muted-foreground">Analyzing your report...</p>
+            <div className="relative mb-4">
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-primary/20 border-t-primary mx-auto"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Activity className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+            <p className="text-base font-medium text-foreground mb-1">Analyzing your report...</p>
+            <p className="text-sm text-muted-foreground">This may take a few moments</p>
           </div>
         </div>
       )}
