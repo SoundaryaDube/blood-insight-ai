@@ -1,6 +1,7 @@
 
 ### Project Description
 link : https://blood-scan-wizard.lovable.app
+
 **Blood Insight AI** is a modern health-tech application designed to simplify the analysis of medical blood reports. By leveraging advanced AI, it allows users to upload their blood test results in various formats and receive instant, easy-to-understand insights into their health status.
 
 The system automatically extracts data from reports to identify potential health issues—such as iron deficiency or anemia—and provides personalized recommendations, making complex medical data accessible to everyone.
